@@ -15,6 +15,7 @@ function drawBackground(background, context, sprites) {
 }
 
 
+
 loadImage('/img/tiles.png')
 .then(image => {
     const sprites = new SpriteSheet(image);
