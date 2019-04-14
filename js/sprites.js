@@ -10,6 +10,15 @@ export function loadMarioSprite() {
     });
 }
 
+export function loadLuiguiSprite() {
+    return loadImage('/img/characters.gif')
+    .then(image => {
+        const luigui = new SpriteSheet(image, 16, 16);
+        luigui.define('idle', 275, 107, 16, 16);
+        return luigui;
+    });
+}
+
 export function loadBackgroundSprites() {
     return loadImage('/img/tiles.png')
     .then(image => {

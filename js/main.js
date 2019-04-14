@@ -7,10 +7,10 @@ const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');
 
 
-function createSpriteLayer(sprite, pos) {
+function createSpriteLayer(sprite, pos , offset) {
     return function drawSpriteLayer(context) {
       for (let i = 0; i < 20; ++i){
-        sprite.draw('idle', context, pos.x + i*16, pos.y);
+        sprite.draw('idle', context, pos.x + offset + i*16 , pos.y);
       }
     };
 }
@@ -18,6 +18,7 @@ function createSpriteLayer(sprite, pos) {
 
 Promise.all([
     loadMarioSprite(),
+    loadLuiguiSprite(),
     loadBackgroundSprites(),
     loadLevel('1-1'),
 ])
@@ -30,8 +31,10 @@ Promise.all([
         x: 0,
         y: 0,
     };
-    const spriteLayer = createSpriteLayer(marioSprite, pos);
+    const spriteLayer = createSpriteLayer(marioSprite, pos, 0);
     comp.layers.push(spriteLayer);
+    comp.layers.push(createSpriteLayer(luiguiSprite, pos, 10));
+
 
     function update() {
         comp.draw(context);
